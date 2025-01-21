@@ -1,5 +1,9 @@
 import { SetStateAction, useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Importa useNavigate
+import icono from './assets/icono.jpg'; // Importa el icono
+import img1 from './assets/1.jpg'; // Importa la primera imagen
+import img2 from './assets/2.jpg'; // Importa la segunda imagen
+import img3 from './assets/3.jpg'; // Importa la tercera imagen
 
 function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -26,7 +30,7 @@ function Home() {
           Regístrate
         </button>
         <img 
-          src="icono.jpg" 
+          src={icono} 
           alt="Icono de Perfil" 
           className="w-12 h-12 rounded-full cursor-pointer" 
           onClick={handleMenuToggle}
@@ -50,9 +54,9 @@ function Home() {
 
       {/* Contenedor de imágenes */}
       <div className="flex flex-wrap justify-center gap-5 mb-5">
-        {[1, 2, 3].map((num) => (
-          <div key={num} className="w-80 bg-white border-4 border-pink-500 rounded-lg overflow-hidden shadow-lg transition-transform hover:-translate-y-1 hover:shadow-xl">
-            <img src={`${num}.jpg`} alt="Punta de Mita" className="w-full h-56 object-cover" />
+        {[img1, img2, img3].map((img, index) => (
+          <div key={index} className="w-80 bg-white border-4 border-pink-500 rounded-lg overflow-hidden shadow-lg transition-transform hover:-translate-y-1 hover:shadow-xl">
+            <img src={img} alt="Punta de Mita" className="w-full h-56 object-cover" />
             <div className="p-4 text-center">
               <p className="text-lg font-semibold text-gray-800">Punta de Mita, México</p>
               <p className="text-gray-600">11 - 16 Ene</p>

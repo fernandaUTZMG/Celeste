@@ -1,6 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
+// Importación de imágenes
+import registroPagosImg from './assets/9.jpg';
+import registroMultasImg from './assets/8.jpg';
+import permisosPortonesImg from './assets/7.jpg';
+import iconoPerfil from './assets/icono.jpg';
+
 const RR = () => {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -43,7 +49,7 @@ const RR = () => {
           Regístrate
         </button>
         <img 
-          src="icono.jpg" 
+          src={iconoPerfil} 
           alt="Icono de Perfil" 
           className="w-12 h-12 rounded-full cursor-pointer" 
           onClick={handleMenuToggle}
@@ -69,37 +75,38 @@ const RR = () => {
         Registros y Permisos
       </h1>
 
+      {/* Contenedor de tarjetas */}
       <div className="flex justify-center w-full gap-8 mt-8 flex-wrap">
         {/* Tarjeta 1 */}
-        <div className="flex flex-col items-center w-1/3 min-w-[250px] mb-8">
+        <div className="flex flex-col items-center w-full sm:w-1/3 min-w-[250px] mb-8">
           <p className="text-2xl font-semibold text-pink-700 mb-4 text-center">Registro de Pagos</p>
           <div 
             className="bg-white border-4 border-pink-700 rounded-lg p-6 text-center w-full shadow-lg cursor-pointer transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl"
             onClick={() => handleRedirect('/registrop')}
           >
-            <img src="9.jpg" alt="Registro de Pagos" className="w-full h-40 object-contain rounded-lg shadow-md" />
+            <img src={registroPagosImg} alt="Registro de Pagos" className="w-full h-40 object-contain rounded-lg shadow-md" />
           </div>
         </div>
 
         {/* Tarjeta 2 */}
-        <div className="flex flex-col items-center w-1/3 min-w-[250px] mb-8">
+        <div className="flex flex-col items-center w-full sm:w-1/3 min-w-[250px] mb-8">
           <p className="text-2xl font-semibold text-pink-700 mb-4 text-center">Registro de Multas</p>
           <div 
             className="bg-white border-4 border-pink-700 rounded-lg p-6 text-center w-full shadow-lg cursor-pointer transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl"
             onClick={() => handleRedirect('/registrom')}
           >
-            <img src="8.jpg" alt="Registro de Multas" className="w-full h-40 object-contain rounded-lg shadow-md" />
+            <img src={registroMultasImg} alt="Registro de Multas" className="w-full h-40 object-contain rounded-lg shadow-md" />
           </div>
         </div>
 
         {/* Tarjeta 3 */}
-        <div className="flex flex-col items-center w-1/3 min-w-[250px] mb-8">
+        <div className="flex flex-col items-center w-full sm:w-1/3 min-w-[250px] mb-8">
           <p className="text-2xl font-semibold text-pink-700 mb-4 text-center">Permisos de Portones</p>
           <div 
             className="bg-white border-4 border-pink-700 rounded-lg p-6 text-center w-full shadow-lg cursor-pointer transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl"
             onClick={() => handleRedirect('/permisospo')}
           >
-            <img src="7.jpg" alt="Permisos de Portones" className="w-full h-40 object-contain rounded-lg shadow-md" />
+            <img src={permisosPortonesImg} alt="Permisos de Portones" className="w-full h-40 object-contain rounded-lg shadow-md" />
           </div>
         </div>
       </div>

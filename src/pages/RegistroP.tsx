@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+// Importación de imágenes
+import iconoPerfil from './assets/icono.jpg';
+import imagenReservacion from './assets/3.jpg';
+
 function Reservacion() {
   const [checkIn, setCheckIn] = useState('');
   const [checkOut, setCheckOut] = useState('');
@@ -42,7 +46,7 @@ function Reservacion() {
           Regístrate
         </button>
         <img
-          src="icono.jpg"
+          src={iconoPerfil}
           alt="Icono de Perfil"
           className="w-12 h-12 rounded-full cursor-pointer"
           onClick={handleMenuToggle}
@@ -68,7 +72,7 @@ function Reservacion() {
       <div className="flex w-full max-w-6xl mt-10 bg-white shadow-xl rounded-lg overflow-hidden">
         {/* Imagen a la izquierda */}
         <div className="w-1/3 pr-6 p-6">
-          <img src="3.jpg" alt="Imagen" className="w-full h-auto rounded-lg shadow-md" />
+          <img src={imagenReservacion} alt="Imagen" className="w-full h-auto rounded-lg shadow-md" />
         </div>
 
         {/* Formulario de reservación */}
