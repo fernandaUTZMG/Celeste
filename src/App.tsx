@@ -3,7 +3,7 @@ import Registro from './pages/registro';
 import Home from './pages/home';
 import RR from './pages/rr';
 import RegistroP from './pages/RegistroP';
-import Inicio from './pages/inicio';
+import Inicio from './pages/Inicio';
 import RegistroMultas from './pages/RegistroM';
 import PermisosPo from './pages/PermisosPo'; // Importar el componente
 
