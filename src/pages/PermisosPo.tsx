@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import iconoPerfil from '../assets/icono.jpg';
 
 const Registro = () => {
   const [formData, setFormData] = useState<Record<string, string>>({
@@ -53,13 +54,14 @@ const Registro = () => {
         >
           Regístrate
         </button>
-        <img 
-          src="icono.jpg" 
-          alt="Icono de Perfil" 
-          className="w-12 h-12 rounded-full cursor-pointer" 
+        <img
+          src={iconoPerfil}
+          alt="Icono de Perfil"
+          className="w-12 h-12 rounded-full cursor-pointer"
           onClick={handleMenuToggle}
         />
       </div>
+     
 
       {/* Menú desplegable */}
       {isMenuOpen && (
