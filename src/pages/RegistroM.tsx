@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';  // Asegúrate de importar Axios
 import iconoPerfil from '../assets/icono.jpg';
 
 const Registro = () => {
@@ -14,6 +15,8 @@ const Registro = () => {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedProfile, setSelectedProfile] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
 
   const handleMenuToggle = () => {
@@ -29,10 +32,17 @@ const Registro = () => {
     setFormData({ ...formData, [field]: e.target.value });
   };
 
-  const handleSave = () => {
-    // Aquí se maneja la lógica para guardar los datos
-    console.log('Datos guardados:', formData);
-    // Podrías hacer una solicitud HTTP para guardar los datos en un servidor, por ejemplo.
+  const handleSave = async () => {
+    try {
+      const response = await axios.post('http://localhost:5000/api/registro', formData);
+      console.log(response.data);  // Respuesta de éxito
+      setSuccessMessage('Datos guardados con éxito');
+      setErrorMessage('');
+    } catch (error) {
+      console.error('Error al guardar el registro:', error);
+      setErrorMessage('Error al guardar el registro');
+      setSuccessMessage('');
+    }
   };
 
   return (
@@ -57,7 +67,7 @@ const Registro = () => {
           onClick={() => navigate('/registro')}
         >
           Regístrate
-          </button>
+        </button>
         <img
           src={iconoPerfil}
           alt="Icono de Perfil"
@@ -79,6 +89,10 @@ const Registro = () => {
           </div>
         </div>
       )}
+
+      {/* Mensajes de éxito o error */}
+      {successMessage && <p className="text-green-500">{successMessage}</p>}
+      {errorMessage && <p className="text-red-500">{errorMessage}</p>}
 
       {/* Título principal */}
       <h1 className="text-5xl font-extrabold text-gray-900 mb-10 text-center uppercase tracking-wide">
@@ -105,7 +119,8 @@ const Registro = () => {
                 className="w-full h-12 p-2 border border-pink-700 rounded-lg mt-1 text-sm text-center focus:ring-2 focus:ring-pink-500"
               />
             </div>
-            {/* Modificando solo el cuadro de texto debajo del campo Fecha */}
+
+            {/* Otros campos */}
             <div className="flex flex-col items-center">
               <label
                 htmlFor="campo2"
