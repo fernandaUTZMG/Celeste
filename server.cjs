@@ -15,11 +15,11 @@ mongoose.connect(process.env.MONGODB_URI, {
 
 // Definir el modelo de registro
 const registroSchema = new mongoose.Schema({
-  campo1: String,
+  campo1: Number,
   campo2: String,
   campo3: String,
   campo4: String,
-  campo5: String,
+  campo5: Number,
   campo6: String,
 });
 
