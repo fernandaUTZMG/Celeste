@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // Importación de imágenes
-import iconoPerfil from './assets/icono.jpg';
-import imagenReservacion from './assets/3.jpg';
+import iconoPerfil from '../assets/icono.jpg';
+import imagenReservacion from '../assets/3.jpg';
 
 function Reservacion() {
   const [checkIn, setCheckIn] = useState('');

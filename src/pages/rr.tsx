@@ -2,10 +2,10 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 // Importación de imágenes
-import registroPagosImg from './assets/9.jpg';
-import registroMultasImg from './assets/8.jpg';
-import permisosPortonesImg from './assets/7.jpg';
-import iconoPerfil from './assets/icono.jpg';
+import registroPagosImg from '../assets/9.jpg';
+import registroMultasImg from '../assets/8.jpg';
+import permisosPortonesImg from '../assets/7.jpg';
+import iconoPerfil from '../assets/icono.jpg';
 
 const RR = () => {
   const navigate = useNavigate();

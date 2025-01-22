@@ -1,9 +1,9 @@
 import { SetStateAction, useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Importa useNavigate
-import icono from './assets/icono.jpg'; // Importa el icono
-import img1 from './assets/1.jpg'; // Importa la primera imagen
-import img2 from './assets/2.jpg'; // Importa la segunda imagen
-import img3 from './assets/3.jpg'; // Importa la tercera imagen
+import icono from '../assets/icono.jpg'; // Importa el icono
+import img1 from '../assets/1.jpg'; // Importa la primera imagen
+import img2 from '../assets/2.jpg'; // Importa la segunda imagen
+import img3 from '../assets/3.jpg'; // Importa la tercera imagen
 
 function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
