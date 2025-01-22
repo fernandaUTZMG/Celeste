@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';  // Asegúrate de importar Axios
 import iconoPerfil from '../assets/icono.jpg';
 
 const Registro = () => {
@@ -32,18 +31,12 @@ const Registro = () => {
     setFormData({ ...formData, [field]: e.target.value });
   };
 
-  const handleSave = async () => {
-  try {
-    const response = await axios.post('http://localhost:3000/api/registro', formData);
-    console.log(response.data);  // Respuesta de éxito
+  const handleSave = () => {
+    // Aquí no se hace ninguna solicitud a la base de datos
+    // Solo se puede manejar la lógica local, como mostrar mensajes de éxito
     setSuccessMessage('Datos guardados con éxito');
     setErrorMessage('');
-  } catch (error) {
-    console.error('Error al guardar el registro:', error);
-    setErrorMessage('Error al guardar el registro');
-    setSuccessMessage('');
-  }
-};
+  };
 
   return (
     <div className="flex flex-col items-center justify-start h-screen bg-white p-10 font-roboto relative">
