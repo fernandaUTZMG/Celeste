@@ -33,17 +33,17 @@ const Registro = () => {
   };
 
   const handleSave = async () => {
-    try {
-      const response = await axios.post('http://localhost:3000/api/registro', formData);
-      console.log(response.data);  // Respuesta de éxito
-      setSuccessMessage('Datos guardados con éxito');
-      setErrorMessage('');
-    } catch (error) {
-      console.error('Error al guardar el registro:', error);
-      setErrorMessage('Error al guardar el registro');
-      setSuccessMessage('');
-    }
-  };
+  try {
+    const response = await axios.post('http://localhost:3000/api/registro', formData);
+    console.log(response.data);  // Respuesta de éxito
+    setSuccessMessage('Datos guardados con éxito');
+    setErrorMessage('');
+  } catch (error) {
+    console.error('Error al guardar el registro:', error);
+    setErrorMessage('Error al guardar el registro');
+    setSuccessMessage('');
+  }
+};
 
   return (
     <div className="flex flex-col items-center justify-start h-screen bg-white p-10 font-roboto relative">
@@ -107,8 +107,8 @@ const Registro = () => {
             <div className="flex flex-col items-center">
               <label
                 htmlFor="campo1"
-                className="block text-gray-700 font-semibold mb-2 text-sm p-2 bg-pink-500 text-white rounded-lg w-full text-center"
-              >
+                className="block text-white font-semibold mb-2 text-sm p-2 bg-pink-500 rounded-lg w-full text-center"
+                >
                 Fecha
               </label>
               <input
@@ -124,8 +124,8 @@ const Registro = () => {
             <div className="flex flex-col items-center">
               <label
                 htmlFor="campo2"
-                className="block text-gray-700 font-semibold mb-2 text-sm p-2 bg-pink-500 text-white rounded-lg w-full text-center"
-              >
+                className="block text-white font-semibold mb-2 text-sm p-2 bg-pink-500 rounded-lg w-full text-center"
+                >
                 Estado del grupo
               </label>
               <input
@@ -139,8 +139,8 @@ const Registro = () => {
             <div className="flex flex-col items-center">
               <label
                 htmlFor="campo3"
-                className="block text-gray-700 font-semibold mb-2 text-sm p-2 bg-pink-500 text-white rounded-lg w-full text-center"
-              >
+                className="block text-white font-semibold mb-2 text-sm p-2 bg-pink-500 rounded-lg w-full text-center"
+                >
                 Descripción de la infracción
               </label>
               <input
@@ -154,8 +154,8 @@ const Registro = () => {
             <div className="flex flex-col items-center">
               <label
                 htmlFor="campo4"
-                className="block text-gray-700 font-semibold mb-2 text-sm p-2 bg-pink-500 text-white rounded-lg w-full text-center"
-              >
+                className="block text-white font-semibold mb-2 text-sm p-2 bg-pink-500 rounded-lg w-full text-center"
+                >
                 Método de pago
               </label>
               <input
@@ -169,8 +169,8 @@ const Registro = () => {
             <div className="flex flex-col items-center">
               <label
                 htmlFor="campo5"
-                className="block text-gray-700 font-semibold mb-2 text-sm p-2 bg-pink-500 text-white rounded-lg w-full text-center"
-              >
+                className="block text-white font-semibold mb-2 text-sm p-2 bg-pink-500 rounded-lg w-full text-center"
+                >
                 Monto
               </label>
               <input
@@ -184,8 +184,8 @@ const Registro = () => {
             <div className="flex flex-col items-center">
               <label
                 htmlFor="campo6"
-                className="block text-gray-700 font-semibold mb-2 text-sm p-2 bg-pink-500 text-white rounded-lg w-full text-center"
-              >
+                className="block text-white font-semibold mb-2 text-sm p-2 bg-pink-500 rounded-lg w-full text-center"
+                >
                 Nombre del infractor
               </label>
               <input

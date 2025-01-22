@@ -99,7 +99,7 @@ const Registro = () => {
               <div key={idx} className="flex flex-col items-center">
                 <label
                   htmlFor={`campo${idx + 1}`}
-                  className="block text-gray-700 font-semibold mb-2 text-sm p-2 bg-pink-500 text-white rounded-lg w-full text-center"
+                  className="block text-gray-700 font-semibold mb-2 text-sm p-2 bg-pink-500 rounded-lg w-full text-center"
                 >
                   {field.label}
                 </label>
