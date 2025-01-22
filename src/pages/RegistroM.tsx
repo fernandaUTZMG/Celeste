@@ -34,7 +34,7 @@ const Registro = () => {
 
   const handleSave = async () => {
     try {
-      const response = await axios.post('http://localhost:3000/api/registro', formData);
+      const response = await axios.post('/api/registro', formData);
       console.log(response.data);  // Respuesta de éxito
       setSuccessMessage('Datos guardados con éxito');
       setErrorMessage('');
