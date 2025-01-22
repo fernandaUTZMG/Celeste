@@ -34,16 +34,30 @@ const Registro = () => {
 
   const handleSave = async () => {
     try {
-      const response = await axios.post('/api/registro', formData);
-      console.log(response.data);  // Respuesta de éxito
+      console.log('Enviando datos:', formData);
+      const response = await axios.post('https://celeste-21.onrender.com/api/registro', formData, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      console.log('Respuesta del servidor:', response.data);
       setSuccessMessage('Datos guardados con éxito');
       setErrorMessage('');
     } catch (error) {
-      console.error('Error al guardar el registro:', error);
-      setErrorMessage('Error al guardar el registro');
+      if (axios.isAxiosError(error)) {
+        console.error('Error al guardar el registro:', error.response?.data);
+        setErrorMessage(error.response?.data?.message || 'Error desconocido');
+      } else {
+        console.error('Error desconocido:', error);
+        setErrorMessage('Error desconocido al guardar el registro');
+      }
       setSuccessMessage('');
     }
   };
+  
+  
+  
+  
 
   return (
     <div className="flex flex-col items-center justify-start h-screen bg-white p-10 font-roboto relative">
