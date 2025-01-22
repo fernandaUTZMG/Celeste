@@ -35,11 +35,13 @@ const Registro = () => {
   const handleSave = async () => {
     try {
       console.log('Enviando datos:', formData);
-      const response = await axios.post('https://celeste-21.onrender.com/api/registro', formData, {
+  
+      const response = await axios.post('http://localhost:5000/api/registro', formData, {
         headers: {
           'Content-Type': 'application/json',
         },
       });
+  
       console.log('Respuesta del servidor:', response.data);
       setSuccessMessage('Datos guardados con éxito');
       setErrorMessage('');
@@ -55,10 +57,10 @@ const Registro = () => {
     }
   };
   
-  
-  
-  
 
+
+
+  
   return (
     <div className="flex flex-col items-center justify-start h-screen bg-white p-10 font-roboto relative">
       
@@ -119,10 +121,7 @@ const Registro = () => {
           {/* Los cuadros de texto */}
           <div className="grid grid-cols-2 gap-4">
             <div className="flex flex-col items-center">
-              <label
-                htmlFor="campo1"
-                className="block font-semibold mb-2 text-sm p-2 bg-pink-500 text-white rounded-lg w-full text-center"
-              >
+              <label htmlFor="campo1" className="block font-semibold mb-2 text-sm p-2 bg-pink-500 text-white rounded-lg w-full text-center">
                 Fecha
               </label>
               <input
@@ -136,10 +135,7 @@ const Registro = () => {
 
             {/* Otros campos */}
             <div className="flex flex-col items-center">
-              <label
-                htmlFor="campo2"
-                className="block font-semibold mb-2 text-sm p-2 bg-pink-500 text-white rounded-lg w-full text-center"
-              >
+              <label htmlFor="campo2" className="block font-semibold mb-2 text-sm p-2 bg-pink-500 text-white rounded-lg w-full text-center">
                 Estado del grupo
               </label>
               <input
@@ -151,10 +147,7 @@ const Registro = () => {
               />
             </div>
             <div className="flex flex-col items-center">
-              <label
-                htmlFor="campo3"
-                className="block font-semibold mb-2 text-sm p-2 bg-pink-500 text-white rounded-lg w-full text-center"
-              >
+              <label htmlFor="campo3" className="block font-semibold mb-2 text-sm p-2 bg-pink-500 text-white rounded-lg w-full text-center">
                 Descripción de la infracción
               </label>
               <input
@@ -166,10 +159,7 @@ const Registro = () => {
               />
             </div>
             <div className="flex flex-col items-center">
-              <label
-                htmlFor="campo4"
-                className="block font-semibold mb-2 text-sm p-2 bg-pink-500 text-white rounded-lg w-full text-center"
-              >
+              <label htmlFor="campo4" className="block font-semibold mb-2 text-sm p-2 bg-pink-500 text-white rounded-lg w-full text-center">
                 Método de pago
               </label>
               <input
@@ -181,10 +171,7 @@ const Registro = () => {
               />
             </div>
             <div className="flex flex-col items-center">
-              <label
-                htmlFor="campo5"
-                className="block font-semibold mb-2 text-sm p-2 bg-pink-500 text-white rounded-lg w-full text-center"
-              >
+              <label htmlFor="campo5" className="block font-semibold mb-2 text-sm p-2 bg-pink-500 text-white rounded-lg w-full text-center">
                 Monto
               </label>
               <input
@@ -196,10 +183,7 @@ const Registro = () => {
               />
             </div>
             <div className="flex flex-col items-center">
-              <label
-                htmlFor="campo6"
-                className="block font-semibold mb-2 text-sm p-2 bg-pink-500 text-white rounded-lg w-full text-center"
-              >
+              <label htmlFor="campo6" className="block font-semibold mb-2 text-sm p-2 bg-pink-500 text-white rounded-lg w-full text-center">
                 Nombre del infractor
               </label>
               <input
@@ -211,16 +195,15 @@ const Registro = () => {
               />
             </div>
           </div>
+        </div>
 
-          {/* Botón de guardar */}
-          <div className="mt-6 flex justify-center">
-            <button
-              onClick={handleSave}
-              className="bg-pink-500 text-white px-8 py-4 rounded-lg text-xl font-bold shadow-md hover:bg-pink-600 transition-transform hover:scale-105"
-            >
-              Guardar
-            </button>
-          </div>
+        <div className="mt-4 w-full flex justify-center">
+          <button
+            onClick={handleSave}
+            className="w-full bg-pink-500 text-white px-6 py-3 rounded-full shadow-md hover:bg-pink-600 transition-transform hover:scale-105"
+          >
+            Guardar
+          </button>
         </div>
       </div>
     </div>
