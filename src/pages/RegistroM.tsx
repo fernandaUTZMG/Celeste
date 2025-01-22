@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios'; // Importación de axios
+import axios from 'axios';  // Asegúrate de importar Axios
 import iconoPerfil from '../assets/icono.jpg';
 
 const Registro = () => {
@@ -34,18 +34,14 @@ const Registro = () => {
 
   const handleSave = async () => {
     try {
-      // Realizando la solicitud POST con los datos del formulario
-      const response = await axios.post('http://localhost:5000/registro', formData);
-      
-      // Mostrar mensaje de éxito
+      const response = await axios.post('http://localhost:3000/api/registro', formData);
+      console.log(response.data);  // Respuesta de éxito
       setSuccessMessage('Datos guardados con éxito');
       setErrorMessage('');
-      console.log(response.data);  // Puedes ver la respuesta del servidor en la consola
     } catch (error) {
-      // Manejar cualquier error al guardar los datos
-      setErrorMessage('Error al guardar los datos. Intenta de nuevo.');
+      console.error('Error al guardar el registro:', error);
+      setErrorMessage('Error al guardar el registro');
       setSuccessMessage('');
-      console.error('Error al guardar los datos:', error);
     }
   };
 
@@ -111,8 +107,8 @@ const Registro = () => {
             <div className="flex flex-col items-center">
               <label
                 htmlFor="campo1"
-                className="block text-white font-semibold mb-2 text-sm p-2 bg-pink-500 rounded-lg w-full text-center"
-                >
+                className="block font-semibold mb-2 text-sm p-2 bg-pink-500 text-white rounded-lg w-full text-center"
+              >
                 Fecha
               </label>
               <input
@@ -128,8 +124,8 @@ const Registro = () => {
             <div className="flex flex-col items-center">
               <label
                 htmlFor="campo2"
-                className="block text-white font-semibold mb-2 text-sm p-2 bg-pink-500 rounded-lg w-full text-center"
-                >
+                className="block font-semibold mb-2 text-sm p-2 bg-pink-500 text-white rounded-lg w-full text-center"
+              >
                 Estado del grupo
               </label>
               <input
@@ -140,7 +136,66 @@ const Registro = () => {
                 className="w-full h-12 p-2 border border-pink-700 rounded-lg mt-1 text-sm text-center focus:ring-2 focus:ring-pink-500"
               />
             </div>
-            {/* Agregar campos adicionales aquí (campo3, campo4, etc.) */}
+            <div className="flex flex-col items-center">
+              <label
+                htmlFor="campo3"
+                className="block font-semibold mb-2 text-sm p-2 bg-pink-500 text-white rounded-lg w-full text-center"
+              >
+                Descripción de la infracción
+              </label>
+              <input
+                type="text"
+                id="campo3"
+                value={formData.campo3}
+                onChange={(e) => handleChange(e, 'campo3')}
+                className="w-full h-12 p-2 border border-pink-700 rounded-lg mt-1 text-sm text-center focus:ring-2 focus:ring-pink-500"
+              />
+            </div>
+            <div className="flex flex-col items-center">
+              <label
+                htmlFor="campo4"
+                className="block font-semibold mb-2 text-sm p-2 bg-pink-500 text-white rounded-lg w-full text-center"
+              >
+                Método de pago
+              </label>
+              <input
+                type="text"
+                id="campo4"
+                value={formData.campo4}
+                onChange={(e) => handleChange(e, 'campo4')}
+                className="w-full h-12 p-2 border border-pink-700 rounded-lg mt-1 text-sm text-center focus:ring-2 focus:ring-pink-500"
+              />
+            </div>
+            <div className="flex flex-col items-center">
+              <label
+                htmlFor="campo5"
+                className="block font-semibold mb-2 text-sm p-2 bg-pink-500 text-white rounded-lg w-full text-center"
+              >
+                Monto
+              </label>
+              <input
+                type="text"
+                id="campo5"
+                value={formData.campo5}
+                onChange={(e) => handleChange(e, 'campo5')}
+                className="w-full h-12 p-2 border border-pink-700 rounded-lg mt-1 text-sm text-center focus:ring-2 focus:ring-pink-500"
+              />
+            </div>
+            <div className="flex flex-col items-center">
+              <label
+                htmlFor="campo6"
+                className="block font-semibold mb-2 text-sm p-2 bg-pink-500 text-white rounded-lg w-full text-center"
+              >
+                Nombre del infractor
+              </label>
+              <input
+                type="text"
+                id="campo6"
+                value={formData.campo6}
+                onChange={(e) => handleChange(e, 'campo6')}
+                className="w-full h-12 p-2 border border-pink-700 rounded-lg mt-1 text-sm text-center focus:ring-2 focus:ring-pink-500"
+              />
+            </div>
           </div>
 
           {/* Botón de guardar */}
