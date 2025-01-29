@@ -1,14 +1,58 @@
-import { SetStateAction, useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Importa useNavigate
-import icono from '../assets/icono.jpg'; // Importa el icono
-import img1 from '../assets/1.jpg'; // Importa la primera imagen
-import img2 from '../assets/2.jpg'; // Importa la segunda imagen
-import img3 from '../assets/3.jpg'; // Importa la tercera imagen
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import icono from '../assets/icono.jpg';
+import img1 from '../assets/1.jpg';
+import img2 from '../assets/2.jpg';
+import img3 from '../assets/3.jpg';
+import { SetStateAction } from 'react';
+
+// Definir el tipo de notificación
+interface Notificacion {
+  id: string;
+  mensaje: string;
+}
 
 function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedProfile, setSelectedProfile] = useState('');
-  const navigate = useNavigate(); // Inicializa useNavigate
+  const [userRole, setUserRole] = useState(''); // Estado para el rol
+  const [notificaciones, setNotificaciones] = useState<Notificacion[]>([]);  // Especificamos el tipo
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
+    
+    if (!usuario || !usuario.departamento) {
+        navigate('/home'); // Redirigir al login si no hay usuario
+        return;
+    }
+
+    setUserRole(usuario.rol); // Establecer el rol del usuario
+    fetchNotificaciones(usuario.departamento); // Obtener notificaciones por departamento
+
+    const interval = setInterval(() => {
+        fetchNotificaciones(usuario.departamento);
+    }, 5000);
+
+    return () => clearInterval(interval);
+}, [navigate]);
+
+  const fetchNotificaciones = async (departamento: string) => {
+    try {
+        console.log('Fetching notifications for departamento:', departamento);
+        const response = await axios.get(`http://localhost:4000/api/notificaciones/${departamento}`);
+        console.log('Notifications fetched:', response.data);
+
+        if (Array.isArray(response.data.notificaciones)) {
+            setNotificaciones(response.data.notificaciones);
+        } else {
+            console.error('Las notificaciones no son un arreglo:', response.data);
+        }
+    } catch (error) {
+        console.error('Error al obtener notificaciones:', error);
+    }
+};
 
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -52,6 +96,11 @@ function Home() {
       {/* Título */}
       <h1 className="text-4xl font-black text-black uppercase tracking-wide text-center drop-shadow-lg">¡Vive la experiencia!</h1>
 
+      {/* Mostrar el rol del usuario */}
+      <div className="mt-4 text-xl">
+        <p>Rol del usuario: {userRole}</p> {/* Mostrar el rol */}
+      </div>
+
       {/* Contenedor de imágenes */}
       <div className="flex flex-wrap justify-center gap-5 mb-5">
         {[img1, img2, img3].map((img, index) => (
@@ -65,6 +114,17 @@ function Home() {
           </div>
         ))}
       </div>
+
+      {/* Mostrar notificaciones */}
+      <div className="notificaciones-container">
+    <h2>Notificaciones</h2>
+    {notificaciones.map((notificacion) => (
+        <div key={notificacion.id} className="notificacion-item">
+            {notificacion.mensaje}
+        </div>
+    ))}
+</div>
+
 
       {/* Botón que redirige a rr.tsx */}
       <button 

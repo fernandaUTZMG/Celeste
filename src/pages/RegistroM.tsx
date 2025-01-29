@@ -1,16 +1,17 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';  // Asegúrate de importar Axios
+import axios from 'axios'; // Asegúrate de importar Axios
 import iconoPerfil from '../assets/icono.jpg';
 
 const Registro = () => {
   const [formData, setFormData] = useState({
-    campo1: '',
-    campo2: '',
-    campo3: '',
-    campo4: '',
-    campo5: '',
-    campo6: '',
+    fecha: '',
+    estadoGrupo: '',
+    descripcionInfraccion: '',
+    metodoPago: '',
+    monto: '',
+    nombreInfractor: '',
+    departamento: '', // Campo adicional para el departamento
   });
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -35,13 +36,13 @@ const Registro = () => {
   const handleSave = async () => {
     try {
       console.log('Enviando datos:', formData);
-  
-      const response = await axios.post('http://localhost:5000/api/registro', formData, {
+
+      const response = await axios.post('http://localhost:4000/api/insertar_multas', formData, {
         headers: {
           'Content-Type': 'application/json',
         },
       });
-  
+
       console.log('Respuesta del servidor:', response.data);
       setSuccessMessage('Datos guardados con éxito');
       setErrorMessage('');
@@ -56,14 +57,9 @@ const Registro = () => {
       setSuccessMessage('');
     }
   };
-  
 
-
-
-  
   return (
     <div className="flex flex-col items-center justify-start h-screen bg-white p-10 font-roboto relative">
-      
       {/* Círculos en forma de triángulo (uno arriba y dos abajo) en la parte superior */}
       <div className="absolute top-5 left-5 flex flex-col items-center space-y-3">
         {/* Círculo superior */}
@@ -121,76 +117,94 @@ const Registro = () => {
           {/* Los cuadros de texto */}
           <div className="grid grid-cols-2 gap-4">
             <div className="flex flex-col items-center">
-              <label htmlFor="campo1" className="block font-semibold mb-2 text-sm p-2 bg-pink-500 text-white rounded-lg w-full text-center">
+              <label htmlFor="fecha" className="block font-semibold mb-2 text-sm p-2 bg-pink-500 text-white rounded-lg w-full text-center">
                 Fecha
               </label>
               <input
                 type="text"
-                id="campo1"
-                value={formData.campo1}
-                onChange={(e) => handleChange(e, 'campo1')}
+                id="fecha"
+                value={formData.fecha}
+                onChange={(e) => handleChange(e, 'fecha')}
+                className="w-full h-12 p-2 border border-pink-700 rounded-lg mt-1 text-sm text-center focus:ring-2 focus:ring-pink-500"
+              />
+            </div>
+
+            {/* Campo para departamento */}
+            <div className="flex flex-col items-center">
+              <label htmlFor="departamento" className="block font-semibold mb-2 text-sm p-2 bg-pink-500 text-white rounded-lg w-full text-center">
+                Departamento
+              </label>
+              <input
+                type="text"
+                id="departamento"
+                value={formData.departamento}
+                onChange={(e) => handleChange(e, 'departamento')}
                 className="w-full h-12 p-2 border border-pink-700 rounded-lg mt-1 text-sm text-center focus:ring-2 focus:ring-pink-500"
               />
             </div>
 
             {/* Otros campos */}
             <div className="flex flex-col items-center">
-              <label htmlFor="campo2" className="block font-semibold mb-2 text-sm p-2 bg-pink-500 text-white rounded-lg w-full text-center">
+              <label htmlFor="estadoGrupo" className="block font-semibold mb-2 text-sm p-2 bg-pink-500 text-white rounded-lg w-full text-center">
                 Estado del grupo
               </label>
               <input
                 type="text"
-                id="campo2"
-                value={formData.campo2}
-                onChange={(e) => handleChange(e, 'campo2')}
+                id="estadoGrupo"
+                value={formData.estadoGrupo}
+                onChange={(e) => handleChange(e, 'estadoGrupo')}
                 className="w-full h-12 p-2 border border-pink-700 rounded-lg mt-1 text-sm text-center focus:ring-2 focus:ring-pink-500"
               />
             </div>
+
             <div className="flex flex-col items-center">
-              <label htmlFor="campo3" className="block font-semibold mb-2 text-sm p-2 bg-pink-500 text-white rounded-lg w-full text-center">
+              <label htmlFor="descripcionInfraccion" className="block font-semibold mb-2 text-sm p-2 bg-pink-500 text-white rounded-lg w-full text-center">
                 Descripción de la infracción
               </label>
               <input
                 type="text"
-                id="campo3"
-                value={formData.campo3}
-                onChange={(e) => handleChange(e, 'campo3')}
+                id="descripcionInfraccion"
+                value={formData.descripcionInfraccion}
+                onChange={(e) => handleChange(e, 'descripcionInfraccion')}
                 className="w-full h-12 p-2 border border-pink-700 rounded-lg mt-1 text-sm text-center focus:ring-2 focus:ring-pink-500"
               />
             </div>
+
             <div className="flex flex-col items-center">
-              <label htmlFor="campo4" className="block font-semibold mb-2 text-sm p-2 bg-pink-500 text-white rounded-lg w-full text-center">
+              <label htmlFor="metodoPago" className="block font-semibold mb-2 text-sm p-2 bg-pink-500 text-white rounded-lg w-full text-center">
                 Método de pago
               </label>
               <input
                 type="text"
-                id="campo4"
-                value={formData.campo4}
-                onChange={(e) => handleChange(e, 'campo4')}
+                id="metodoPago"
+                value={formData.metodoPago}
+                onChange={(e) => handleChange(e, 'metodoPago')}
                 className="w-full h-12 p-2 border border-pink-700 rounded-lg mt-1 text-sm text-center focus:ring-2 focus:ring-pink-500"
               />
             </div>
+
             <div className="flex flex-col items-center">
-              <label htmlFor="campo5" className="block font-semibold mb-2 text-sm p-2 bg-pink-500 text-white rounded-lg w-full text-center">
+              <label htmlFor="monto" className="block font-semibold mb-2 text-sm p-2 bg-pink-500 text-white rounded-lg w-full text-center">
                 Monto
               </label>
               <input
                 type="text"
-                id="campo5"
-                value={formData.campo5}
-                onChange={(e) => handleChange(e, 'campo5')}
+                id="monto"
+                value={formData.monto}
+                onChange={(e) => handleChange(e, 'monto')}
                 className="w-full h-12 p-2 border border-pink-700 rounded-lg mt-1 text-sm text-center focus:ring-2 focus:ring-pink-500"
               />
             </div>
+
             <div className="flex flex-col items-center">
-              <label htmlFor="campo6" className="block font-semibold mb-2 text-sm p-2 bg-pink-500 text-white rounded-lg w-full text-center">
+              <label htmlFor="nombreInfractor" className="block font-semibold mb-2 text-sm p-2 bg-pink-500 text-white rounded-lg w-full text-center">
                 Nombre del infractor
               </label>
               <input
                 type="text"
-                id="campo6"
-                value={formData.campo6}
-                onChange={(e) => handleChange(e, 'campo6')}
+                id="nombreInfractor"
+                value={formData.nombreInfractor}
+                onChange={(e) => handleChange(e, 'nombreInfractor')}
                 className="w-full h-12 p-2 border border-pink-700 rounded-lg mt-1 text-sm text-center focus:ring-2 focus:ring-pink-500"
               />
             </div>
@@ -200,7 +214,7 @@ const Registro = () => {
         <div className="mt-4 w-full flex justify-center">
           <button
             onClick={handleSave}
-            className="w-full bg-pink-500 text-white px-6 py-3 rounded-full shadow-md hover:bg-pink-600 transition-transform hover:scale-105"
+            className="w-full bg-pink-500 text-white p-4 rounded-lg font-semibold shadow-lg hover:bg-pink-600 transition-transform hover:scale-105"
           >
             Guardar
           </button>

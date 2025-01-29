@@ -7,6 +7,7 @@ import Inicio from './pages/Inicio';
 import RegistroMultas from './pages/RegistroM';
 import PermisosPo from './pages/PermisosPo'; // Importar el componente
 import './index.css'
+
 function AppRouter() {
   return (
     <Router>
