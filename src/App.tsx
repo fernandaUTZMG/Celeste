@@ -5,8 +5,9 @@ import RR from './pages/rr';
 import RegistroP from './pages/RegistroP';
 import Inicio from './pages/Inicio';
 import RegistroMultas from './pages/RegistroM';
-import PermisosPo from './pages/PermisosPo'; // Importar el componente
-import './index.css'
+import PermisosPo from './pages/PermisosPo';
+import Admin from './pages/admin';
+import './index.css';
 
 function AppRouter() {
   return (
@@ -18,7 +19,8 @@ function AppRouter() {
         <Route path="/registrop" element={<RegistroP />} />
         <Route path="/" element={<Inicio />} />
         <Route path="/registrom" element={<RegistroMultas />} />
-        <Route path="/permisospo" element={<PermisosPo />} /> {/* Agregar la ruta */}
+        <Route path="/permisospo" element={<PermisosPo />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
     </Router>
   );

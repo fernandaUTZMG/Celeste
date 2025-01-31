@@ -5,13 +5,41 @@ function Registro() {
   const [phone, setPhone] = useState('');
   const [role, setRole] = useState('Dueño');
   const [profile, setProfile] = useState('');
+  const [departmentNumber, setDepartmentNumber] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (e: { preventDefault: () => void; }) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (phone && role && profile) {
-      navigate('/home');
+    if (phone && role && profile && departmentNumber) {
+      try {
+        const response = await fetch('http://localhost:4000/api/registro', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            numero: phone,
+            rol: role,
+            tipo_departamento: profile,
+            id_departamento: departmentNumber, // Enviamos el número de departamento
+          }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          alert('Usuario registrado exitosamente'); // Muestra una alerta
+          navigate('/home');
+        } else {
+          alert('Error al registrar el usuario'); // Muestra una alerta
+
+          setError(data.message || 'Error al registrar el usuario');
+        }
+      } catch (error) {
+        console.error('Error al registrar el usuario:', error);
+        setError('Error al registrar el usuario');
+      }
     } else {
       setError('Por favor, complete todos los campos');
     }
@@ -42,7 +70,7 @@ function Registro() {
           </div>
 
           <div className="mb-6">
-            <label className="block text-gray-700 font-semibold">Ingresa tu número de teléfono:</label>
+            <label className="block text-gray-700 font-semibold">Ingresa número de teléfono:</label>
             <input
               type="tel"
               value={phone}
@@ -50,6 +78,18 @@ function Registro() {
               required
               className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 transition"
               placeholder="Número telefónico"
+            />
+          </div>
+
+          <div className="mb-6">
+            <label className="block text-gray-700 font-semibold">Número de departamento:</label>
+            <input
+              type="text"
+              value={departmentNumber}
+              onChange={(e) => setDepartmentNumber(e.target.value)}
+              required
+              className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 transition"
+              placeholder="Número de departamento"
             />
           </div>
 

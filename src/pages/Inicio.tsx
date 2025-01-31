@@ -2,36 +2,60 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
-  const [phone, setPhone] = useState('');
-  const [error, setError] = useState('');
+  const [telefono, setTelefono] = useState('');
+  const [loginError, setLoginError] = useState('');
+  const [showWarning, setShowWarning] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogin = async (e: { preventDefault: () => void; }) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    try {
-      const response = await fetch('http://localhost:4000/api/iniciar_sesion', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ numero: phone }),
-      });
+    if (!telefono) {
+      setShowWarning(true);
+      setLoginError('');
+    } else {
+      setShowWarning(false);
+      setLoginError('');
 
-      const data = await response.json();
+      try {
+        const response = await fetch('http://localhost:4000/api/iniciar_sesion', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ numero: telefono }),
+        });
 
-      if (response.ok) {
-        alert('Inicio de sesión exitoso');
-        localStorage.setItem('usuario', JSON.stringify(data.usuario)); // Guarda datos del usuario
-        navigate('/home'); // Redirige a la página Home.tsx
-      } else {
-        setError(data.message || 'Error al iniciar sesión');
+        const data = await response.json();
+
+        if (response.ok) {
+          console.log('Inicio de sesión exitoso:', data);
+          const { numero, rol, departamento, id_departamento } = data.usuario;
+
+          localStorage.setItem('numero', numero);
+          localStorage.setItem('userRole', rol);
+          localStorage.setItem('tipo_departamento', departamento);
+          localStorage.setItem('departamento', id_departamento);
+
+          console.log(localStorage.getItem('userRole'));
+          console.log(localStorage.getItem('id_departamento'));
+
+          if (rol === 'Administrador') {
+            navigate('/admin');
+          } else {
+            navigate('/rr');
+          }
+        } else {
+          setLoginError('Tu nombre de usuario o contraseña son incorrectos');
+          setShowWarning(false);
+        }
+      } catch (error) {
+        console.error('Error al iniciar sesión:', error);
+        setLoginError('Hubo un problema con el servidor, por favor intenta más tarde');
       }
-    } catch (error) {
-      console.error('Error al iniciar sesión:', error);
-      setError('Ocurrió un error al conectar con el servidor');
     }
   };
+
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4 relative">
@@ -51,7 +75,7 @@ export default function Login() {
       <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-md">
         <h1 className="text-2xl font-bold text-center text-gray-800">Inicia sesión o Regístrate</h1>
         <h2 className="text-lg text-center text-gray-600 mt-2">¡Te damos la bienvenida!</h2>
-        <form onSubmit={handleLogin} className="mt-4">
+        <form onSubmit={handleSubmit} className="mt-4">
           {/* Campo de selección del país */}
           <div className="mb-4">
             <label className="block text-gray-700">País/Región</label>
@@ -67,16 +91,18 @@ export default function Login() {
             <label className="block text-gray-700">Número telefónico</label>
             <input
               type="tel"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              value={telefono}
+              onChange={(e) => setTelefono(e.target.value)}
               required
               className="w-full p-2 border border-pink-700 rounded mt-1"
               placeholder="Número telefónico"
             />
           </div>
 
+
           {/* Mensaje de error */}
-          {error && <p className="text-red-500 text-sm mb-2">{error}</p>}
+          {loginError && <p className="text-red-500 text-sm mb-2">{loginError}</p>}
+          {showWarning && <p className="text-yellow-500 text-sm mb-2">Por favor ingresa el número y la contraseña.</p>}
 
           {/* Información adicional */}
           <p className="text-xs text-gray-600 mb-4">
