@@ -1,0 +1,43 @@
+/* Animación de carga */
+.loading-enter {
+    opacity: 0;
+  }
+  .loading-enter-active {
+    opacity: 1;
+    transition: opacity 300ms;
+  }
+  .loading-exit {
+    opacity: 1;
+  }
+  .loading-exit-active {
+    opacity: 0;
+    transition: opacity 1000ms;
+  }
+  
+  /* Animación del modal */
+  .modal-enter {
+    opacity: 0;
+  }
+  .modal-enter-active {
+    opacity: 1;
+    transition: opacity 1000ms;
+  }
+  .modal-exit {
+    opacity: 1;
+  }
+  .modal-exit-active {
+    opacity: 0;
+    transition: opacity 1000ms;
+  }
+  /* multas.css */
+
+/* Animación de carga */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(20deg); }
+}
+
+/* Estilo para el spinner */
+.animate-spin {
+  animation: spin 1s linear infinite; /* Cambié 1s por 3s para hacer la animación más lenta */
+}

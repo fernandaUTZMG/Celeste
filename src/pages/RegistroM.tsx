@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'; // Asegúrate de importar Axios
 import iconoPerfil from '../assets/icono.jpg';
+import './multas.css';
+import LoadingSpinner from './LoadingSpinner'; // Importamos el componente de la animación de carga
 
 const Registro = () => {
   const [formData, setFormData] = useState({
@@ -18,6 +20,8 @@ const Registro = () => {
   const [selectedProfile, setSelectedProfile] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+  const [showModal, setShowModal] = useState(false); // Estado para el modal
+  const [isLoading, setIsLoading] = useState(false); // Estado para animación de carga
   const navigate = useNavigate();
 
   const handleMenuToggle = () => {
@@ -34,10 +38,11 @@ const Registro = () => {
   };
 
   const handleSave = async () => {
+    setIsLoading(true); // Inicia la animación de carga
     try {
       console.log('Enviando datos:', formData);
 
-      const response = await axios.post('http://localhost:4000/api/insertar_multas', formData, {
+      const response = await axios.post('https://apiss-81oo.onrender.com/api/insertar_multas', formData, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -46,6 +51,7 @@ const Registro = () => {
       console.log('Respuesta del servidor:', response.data);
       setSuccessMessage('Datos guardados con éxito');
       setErrorMessage('');
+      setShowModal(true); // Muestra el modal de éxito
     } catch (error) {
       if (axios.isAxiosError(error)) {
         console.error('Error al guardar el registro:', error.response?.data);
@@ -56,6 +62,7 @@ const Registro = () => {
       }
       setSuccessMessage('');
     }
+    setIsLoading(false); // Finaliza la animación de carga
   };
 
   return (
@@ -209,17 +216,36 @@ const Registro = () => {
               />
             </div>
           </div>
-        </div>
 
-        <div className="mt-4 w-full flex justify-center">
-          <button
-            onClick={handleSave}
-            className="w-full bg-pink-500 text-white p-4 rounded-lg font-semibold shadow-lg hover:bg-pink-600 transition-transform hover:scale-105"
-          >
-            Guardar
-          </button>
+          <div className="flex justify-center mt-6">
+            <button
+              className="bg-pink-500 text-white px-6 py-2 rounded-full text-sm font-bold hover:bg-pink-600"
+              onClick={handleSave}
+            >
+              Guardar
+            </button>
+          </div>
         </div>
       </div>
+
+      {/* Mostrar el modal de éxito */}
+      {showModal && (
+        <div className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-8 rounded-lg shadow-lg">
+            <h2 className="text-xl font-bold text-green-500">¡Registro exitoso!</h2>
+            <p className="mt-2 text-gray-700">Los datos se han guardado correctamente.</p>
+            <button
+              className="mt-4 bg-green-500 text-white px-6 py-2 rounded-full"
+              onClick={() => setShowModal(false)}
+            >
+              Cerrar
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Cargar la animación de carga */}
+      {isLoading && <LoadingSpinner />}
     </div>
   );
 };
