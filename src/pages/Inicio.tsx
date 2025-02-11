@@ -18,7 +18,7 @@ export default function Login() {
       setLoginError('');
 
       try {
-        const response = await fetch('http://localhost:4000/api/iniciar_sesion', {
+        const response = await fetch('https://celeste-cumv.onrender.com/api/iniciar_sesion', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

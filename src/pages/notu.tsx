@@ -36,7 +36,7 @@ const Notis: React.FC = () => {
       console.log("📌 ID Departamento convertido a String:", departamento);
 
       try {
-        const url = `http://localhost:4000/api/notificaciones/${departamento}`;
+        const url = `https://celeste-cumv.onrender.com/api/notificaciones/${departamento}`;
         console.log("📌 Haciendo petición a:", url);
 
         const response = await axios.get(url);
@@ -65,7 +65,7 @@ const Notis: React.FC = () => {
 
   const handleMarkAsRead = async (id: string) => {
     try {
-      const response = await axios.patch(`http://localhost:4000/api/notificaciones/${id}`, { leido: true });
+      const response = await axios.patch(`https://celeste-cumv.onrender.com/api/notificaciones/${id}`, { leido: true });
       if (response.status === 200) {
         setNotificaciones(prevNotificaciones =>
           prevNotificaciones.map(notif =>
