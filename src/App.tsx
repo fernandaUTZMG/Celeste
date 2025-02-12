@@ -13,11 +13,11 @@ function AppRouter() {
   return (
     <Router>
       <Routes>
+      <Route path="/" element={<Inicio />} />
         <Route path="/registro" element={<Registro />} />
         <Route path="/home" element={<Home />} />
         <Route path="/rr" element={<RR />} />
         <Route path="/registrop" element={<RegistroP />} />
-        <Route path="/" element={<Inicio />} />
         <Route path="/registrom" element={<RegistroMultas />} />
         <Route path="/permisospo" element={<PermisosPo />} />
         <Route path="/admin" element={<Admin />} />

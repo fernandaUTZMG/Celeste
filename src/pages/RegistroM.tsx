@@ -42,7 +42,7 @@ const Registro = () => {
     try {
       console.log('Enviando datos:', formData);
 
-      const response = await axios.post('https://celeste-cumv.onrender.com/api/insertar_multas', formData, {
+      const response = await axios.post('https://apiss-81oo.onrender.com/api/insertar_multas', formData, {
         headers: {
           'Content-Type': 'application/json',
         },

@@ -41,7 +41,7 @@ function Home() {
   const fetchNotificaciones = async (departamento: string) => {
     try {
         console.log('Fetching notifications for departamento:', departamento);
-        const response = await axios.get(`https://celeste-cumv.onrender.com/api/notificaciones/${departamento}`);
+        const response = await axios.get(`https://apiss-81oo.onrender.com/api/notificaciones/${departamento}`);
         console.log('Notifications fetched:', response.data);
 
         if (Array.isArray(response.data.notificaciones)) {

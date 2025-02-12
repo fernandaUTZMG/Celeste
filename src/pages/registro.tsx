@@ -13,7 +13,7 @@ function Registro() {
     e.preventDefault();
     if (phone && role && profile && departmentNumber) {
       try {
-        const response = await fetch('https://celeste-cumv.onrender.com/api/registro', {
+        const response = await fetch('https://apiss-81oo.onrender.com/api/registro', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
