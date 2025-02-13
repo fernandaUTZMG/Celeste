@@ -29,6 +29,17 @@
     opacity: 0;
     transition: opacity 1000ms;
   }
+  
+.modal {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out; /* Transición suave de opacidad */
+}
+
+.modal.show {
+  opacity: 1;
+}
+
+
   /* multas.css */
 
 /* Animación de carga */

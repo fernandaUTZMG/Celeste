@@ -230,19 +230,20 @@ const Registro = () => {
 
       {/* Mostrar el modal de éxito */}
       {showModal && (
-        <div className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-8 rounded-lg shadow-lg">
-            <h2 className="text-xl font-bold text-green-500">¡Registro exitoso!</h2>
-            <p className="mt-2 text-gray-700">Los datos se han guardado correctamente.</p>
-            <button
-              className="mt-4 bg-green-500 text-white px-6 py-2 rounded-full"
-              onClick={() => setShowModal(false)}
-            >
-              Cerrar
-            </button>
-          </div>
-        </div>
-      )}
+  <div className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex items-center justify-center z-50">
+    <div className={`bg-white p-8 rounded-lg shadow-lg modal ${showModal ? 'show' : ''}`}>
+      <h2 className="text-xl font-bold text-green-500">¡Registro exitoso!</h2>
+      <p className="mt-2 text-gray-700">Los datos se han guardado correctamente.</p>
+      <button
+        className="mt-4 bg-green-500 text-white px-6 py-2 rounded-full"
+        onClick={() => setShowModal(false)}
+      >
+        Cerrar
+      </button>
+    </div>
+  </div>
+)}
+
 
       {/* Cargar la animación de carga */}
       {isLoading && <LoadingSpinner />}
