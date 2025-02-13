@@ -30,22 +30,35 @@
     transition: opacity 1000ms;
   }
   
-.modal {
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out; /* Transición suave de opacidad */
-}
-
-.modal.show {
-  opacity: 1;
-}
-
+  .modal-enter {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  
+  .modal-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 1000ms, transform 1000ms;
+  }
+  
+  .modal-exit {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .modal-exit-active {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1000ms, transform 1000ms;
+  }
+  
 
   /* multas.css */
 
 /* Animación de carga */
 @keyframes spin {
   0% { transform: rotate(0deg); }
-  100% { transform: rotate(20deg); }
+  100% { transform: rotate(10deg); }
 }
 
 /* Estilo para el spinner */

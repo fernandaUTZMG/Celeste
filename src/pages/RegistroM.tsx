@@ -5,6 +5,7 @@ import iconoPerfil from '../assets/icono.jpg';
 import './multas.css';
 import LoadingSpinner from './LoadingSpinner'; // Importamos el componente de la animación de carga
 
+
 const Registro = () => {
   const [formData, setFormData] = useState({
     fecha: '',
@@ -231,7 +232,7 @@ const Registro = () => {
       {/* Mostrar el modal de éxito */}
       {showModal && (
   <div className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex items-center justify-center z-50">
-    <div className={`bg-white p-8 rounded-lg shadow-lg modal ${showModal ? 'show' : ''}`}>
+    <div className={`bg-white p-8 rounded-lg shadow-lg modal ${showModal ? 'modal-enter-active' : 'modal-enter'}`}>
       <h2 className="text-xl font-bold text-green-500">¡Registro exitoso!</h2>
       <p className="mt-2 text-gray-700">Los datos se han guardado correctamente.</p>
       <button
