@@ -22,7 +22,7 @@ const RR = () => {
         const departamento = localStorage.getItem("departamento");
         if (!departamento) return;
 
-        const response = await axios.get(`http://localhost:4000/api/notificaciones/${departamento}`);
+        const response = await axios.get(`https://apiss-81oo.onrender.com/api/notificaciones/${departamento}`);
         const notificaciones = response.data.notificaciones || [];
         
         // Contar solo las no leídas

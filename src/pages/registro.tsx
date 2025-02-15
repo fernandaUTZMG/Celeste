@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import bcrypt from 'bcryptjs'; // Agrega la importación
 
 function Registro() {
   const [phone, setPhone] = useState('');
@@ -8,11 +9,13 @@ function Registro() {
   const [departmentNumber, setDepartmentNumber] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const [password, setPassword] = useState(''); // Agregar campo para la contraseña
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (phone && role && profile && departmentNumber) {
       try {
+        const hashedPassword = await bcrypt.hash(password, 10);
         const response = await fetch('https://apiss-81oo.onrender.com/api/registro', {
           method: 'POST',
           headers: {
@@ -21,6 +24,7 @@ function Registro() {
           body: JSON.stringify({
             numero: phone,
             rol: role,
+            password: hashedPassword, // Enviar la contraseña encriptada
             tipo_departamento: profile,
             id_departamento: departmentNumber, // Enviamos el número de departamento
           }),
@@ -90,6 +94,18 @@ function Registro() {
               required
               className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 transition"
               placeholder="Número de departamento"
+            />
+          </div>
+
+          <div className="mb-6">
+            <label className="block text-gray-700 font-semibold">Contraseña:</label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 transition"
+              placeholder="Contraseña"
             />
           </div>
 
