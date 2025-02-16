@@ -23,7 +23,7 @@ export default function Login() {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ numero: telefono, password: telefono }),
+          body: JSON.stringify({ numero: telefono }),
         });
 
         const data = await response.json();
@@ -36,8 +36,7 @@ export default function Login() {
           localStorage.setItem('userRole', rol);
           localStorage.setItem('tipo_departamento', departamento);
           localStorage.setItem('departamento', id_departamento);
-          localStorage.setItem('token', data.token);
-          
+
           console.log(localStorage.getItem('userRole'));
           console.log(localStorage.getItem('id_departamento'));
 
