@@ -18,12 +18,12 @@ export default function Login() {
       setLoginError('');
 
       try {
-        const response = await fetch('https://apiss-81oo.onrender.com/api/iniciar_sesion', {
+        const response = await fetch('http://localhost:4000/api/iniciar_sesion', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ numero: telefono, password: telefono }),
+          body: JSON.stringify({ numero: telefono }),
         });
 
         const data = await response.json();
@@ -97,7 +97,7 @@ export default function Login() {
           <div className="mb-4">
             <label className="block text-gray-700">Número telefónico</label>
             <input
-              type="tel"
+              type="telefono"
               value={telefono}
               onChange={(e) => setTelefono(e.target.value)}
               required
