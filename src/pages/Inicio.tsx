@@ -30,6 +30,12 @@ export default function Login() {
 
         if (response.ok) {
           console.log('Inicio de sesión exitoso:', data);
+  
+          // Verificar si 'usuario' existe en la respuesta
+          if (!data.usuario) {
+            throw new Error('La respuesta de la API no contiene información de usuario.');
+          }
+  
           const { numero, rol, departamento, id_departamento } = data.usuario;
 
           localStorage.setItem('numero', numero);
