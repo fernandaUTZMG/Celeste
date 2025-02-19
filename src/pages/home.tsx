@@ -19,6 +19,8 @@ function Home() {
   const [userRole, setUserRole] = useState(''); // Estado para el rol
   const [notificaciones, setNotificaciones] = useState<Notificacion[]>([]);  // Especificamos el tipo
   const navigate = useNavigate();
+  const token = localStorage.getItem("token");
+  console.log("📌 Token de autenticación:", token);
 
   useEffect(() => {
     const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');

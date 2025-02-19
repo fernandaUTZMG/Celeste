@@ -6,6 +6,7 @@ export default function Login() {
   const [loginError, setLoginError] = useState('');
   const [showWarning, setShowWarning] = useState(false);
   const navigate = useNavigate();
+  
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -18,7 +19,7 @@ export default function Login() {
       setLoginError('');
 
       try {
-        const response = await fetch('https://apiss-81oo.onrender.com/api/iniciar_sesion', {
+        const response = await fetch('https://apiss-81oo.onrender.com/api/iniciarS', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -30,19 +31,22 @@ export default function Login() {
 
         if (response.ok) {
           console.log('Inicio de sesión exitoso:', data);
+          const {token, usuario	} = data;
   
           // Verificar si 'usuario' existe en la respuesta
           if (!data.usuario) {
             throw new Error('La respuesta de la API no contiene información de usuario.');
           }
   
-          const { numero, rol, departamento, id_departamento } = data.usuario;
+          const { numero, rol, departamento, id_departamento } = usuario;
+          
 
           localStorage.setItem('numero', numero);
           localStorage.setItem('userRole', rol);
           localStorage.setItem('tipo_departamento', departamento);
           localStorage.setItem('departamento', id_departamento);
-          localStorage.setItem('token', data.token);
+          localStorage.setItem('tok', token);
+          console.log(localStorage.getItem('tok'));
           
           console.log(localStorage.getItem('userRole'));
           console.log(localStorage.getItem('id_departamento'));
