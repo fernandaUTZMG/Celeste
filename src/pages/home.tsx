@@ -81,6 +81,7 @@ function Home() {
           className="w-12 h-12 rounded-full cursor-pointer" 
           onClick={handleMenuToggle}
         />
+        
       </div>
 
       {/* Barra lateral */}
