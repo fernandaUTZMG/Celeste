@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 export default function Login() {
   const [telefono, setTelefono] = useState('');
   const [loginError, setLoginError] = useState('');
+  const [contrasena, setContrasena] = useState('');
   const [showWarning, setShowWarning] = useState(false);
   const navigate = useNavigate();
   
@@ -11,7 +12,7 @@ export default function Login() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!telefono) {
+    if (!telefono || !contrasena) {
       setShowWarning(true);
       setLoginError('');
     } else {
@@ -19,12 +20,12 @@ export default function Login() {
       setLoginError('');
 
       try {
-        const response = await fetch('https://apiss-81oo.onrender.com/api/iniciarS', {
+        const response = await fetch('http://localhost:4001/api/iniciarS', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ numero: telefono}),
+          body: JSON.stringify({ numero: telefono, pass:contrasena }),
         });
 
         const data = await response.json();
@@ -38,10 +39,11 @@ export default function Login() {
             throw new Error('La respuesta de la API no contiene información de usuario.');
           }
   
-          const { numero, rol, departamento, id_departamento } = usuario;
+          const { numero, pass, rol, departamento, id_departamento } = usuario;
           
 
           localStorage.setItem('numero', numero);
+          localStorage.setItem('pass', pass);
           localStorage.setItem('userRole', rol);
           localStorage.setItem('tipo_departamento', departamento);
           localStorage.setItem('departamento', id_departamento);
@@ -107,6 +109,18 @@ export default function Login() {
               required
               className="w-full p-2 border border-pink-700 rounded mt-1"
               placeholder="Número telefónico"
+            />
+          </div>
+
+          <div className="mb-4">
+            <label className="block text-gray-700">Contraseña</label>
+            <input
+              type="password"
+              value={contrasena}
+              onChange={(e) => setContrasena(e.target.value)}
+              required
+              className="w-full p-2 border border-pink-700 rounded mt-1"
+              placeholder="Contraseña"
             />
           </div>
 
