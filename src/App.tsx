@@ -7,6 +7,7 @@ import Inicio from './pages/Inicio';
 import RegistroMultas from './pages/RegistroM';
 import PermisosPo from './pages/PermisosPo';
 import Admin from './pages/admin';
+import Contrasena from './pages/contrasena';
 import './index.css';
 
 function AppRouter() {
@@ -17,6 +18,7 @@ function AppRouter() {
         <Route path="/registro" element={<Registro />} />
         <Route path="/home" element={<Home />} />
         <Route path="/rr" element={<RR />} />
+        <Route path="/contrasena" element={<Contrasena />} />
         <Route path="/registrop" element={<RegistroP />} />
         <Route path="/registrom" element={<RegistroMultas />} />
         <Route path="/permisospo" element={<PermisosPo />} />

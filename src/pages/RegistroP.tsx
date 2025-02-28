@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Cerrar from './cerrar';
+
 
 // Importación de imágenes
 import iconoPerfil from '../assets/icono.jpg';
@@ -24,7 +26,8 @@ function Reservacion() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-8 relative">
-      
+            <Cerrar />
+
       {/* Círculos en la parte superior */}
       <div className="absolute top-5 left-5 flex flex-col items-center space-y-3">
         {/* Círculo superior */}

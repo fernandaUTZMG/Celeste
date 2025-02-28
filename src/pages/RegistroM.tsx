@@ -4,6 +4,7 @@ import axios from 'axios'; // Asegúrate de importar Axios
 import iconoPerfil from '../assets/icono.jpg';
 import './multas.css';
 import LoadingSpinner from './LoadingSpinner'; // Importamos el componente de la animación de carga
+import Cerrar from './cerrar';
 
 
 const Registro = () => {
@@ -68,6 +69,7 @@ const Registro = () => {
 
   return (
     <div className="flex flex-col items-center justify-start h-screen bg-white p-10 font-roboto relative">
+      <Cerrar />
       {/* Círculos en forma de triángulo (uno arriba y dos abajo) en la parte superior */}
       <div className="absolute top-5 left-5 flex flex-col items-center space-y-3">
         {/* Círculo superior */}

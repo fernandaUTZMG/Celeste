@@ -6,6 +6,8 @@ import img1 from '../assets/1.jpg';
 import img2 from '../assets/2.jpg';
 import img3 from '../assets/3.jpg';
 import { SetStateAction } from 'react';
+import Cerrar from './cerrar';
+
 
 // Definir el tipo de notificación
 interface Notificacion {
@@ -67,6 +69,8 @@ function Home() {
 
   return (
     <div className="flex flex-col items-center justify-between h-screen p-5 bg-white font-sans relative">
+      <Cerrar />
+
       {/* Icono de perfil y botón de registro */}
       <div className="absolute top-3 right-3 flex items-center space-x-3">
         <button 
@@ -74,6 +78,12 @@ function Home() {
           onClick={() => navigate('/registro')}
         >
           Regístrate
+        </button>
+        <button 
+          className="bg-pink-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-md hover:bg-pink-600 transition-transform hover:scale-105"
+          onClick={() => navigate('/contrasena')}
+        >
+          Cambiar contraseña
         </button>
         <img 
           src={icono} 

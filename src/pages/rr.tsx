@@ -8,6 +8,8 @@ import axios from 'axios';
 import registroPagosImg from '../assets/9.jpg';
 import permisosPortonesImg from '../assets/7.jpg';
 import iconoPerfil from '../assets/icono.jpg';
+import Cerrar from './cerrar';
+
 
 const RR = () => {
   const navigate = useNavigate();
@@ -53,7 +55,7 @@ const RR = () => {
 
   return (
     <div className="flex flex-col items-center justify-start h-screen bg-white p-10 font-roboto relative">
-      
+      <Cerrar />
       {/* Círculos en la parte superior */}
       <div className="absolute top-5 left-5 flex flex-col items-center space-y-3">
         <div className="w-6 h-6 bg-pink-500 rounded-full mb-3"></div>
