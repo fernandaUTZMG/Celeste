@@ -19,7 +19,7 @@ function CambiarContrasena() {
       return;
     }
     try {
-      const response = await fetch('https://apiss-81oo.onrender.com/api/newcontra', {
+      const response = await fetch('http://localhost:4001/api/newcontra', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

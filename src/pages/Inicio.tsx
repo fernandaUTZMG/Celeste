@@ -20,7 +20,7 @@ export default function Login() {
       setLoginError('');
 
       try {
-        const response = await fetch('https://apiss-81oo.onrender.com/api/iniciarS', {
+        const response = await fetch('http://localhost:4001/api/iniciarS', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -141,6 +141,13 @@ export default function Login() {
             className="w-full bg-pink-700 text-white font-bold py-2 rounded">
             Continuar
           </button>
+
+          <button
+  type="button"
+  onClick={() => navigate('/recuperarcontrasena')}
+  className="w-full mt-2 border border-pink-700 text-pink-700 font-bold py-2 rounded">
+  Olvidaste tu contraseña
+</button>
         </form>
       </div>
     </div>

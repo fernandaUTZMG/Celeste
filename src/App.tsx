@@ -8,6 +8,7 @@ import RegistroMultas from './pages/RegistroM';
 import PermisosPo from './pages/PermisosPo';
 import Admin from './pages/admin';
 import Contrasena from './pages/contrasena';
+import RecuperarContra from './pages/recuperarcontrasena';
 import './index.css';
 
 function AppRouter() {
@@ -23,6 +24,8 @@ function AppRouter() {
         <Route path="/registrom" element={<RegistroMultas />} />
         <Route path="/permisospo" element={<PermisosPo />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/recuperarcontrasena" element={<RecuperarContra />} />
+
       </Routes>
     </Router>
   );
